@@ -6,8 +6,9 @@ services:
       - ./app:/usr/src/app
       - axa_node_modules:/usr/src/app/node_modules
     entrypoint: [ "npm", "run", "start" ]
+    #entrypoint: [ "tail", "-f", "/dev/null" ]
     ports:
-      - 3000:3000
+      - 4200:4200
 
   mock-auth:
     # See: https://github.com/navikt/mock-oauth2-server#standalone-server
@@ -18,7 +19,8 @@ services:
     environment:
       JSON_CONFIG_PATH: /app/conf/mock-oauth2-server.json
     ports:
-      - 80:8080
+      - 8080:8080
+    hostname: localhost
 
 volumes:
   axa_node_modules:
